@@ -1,0 +1,34 @@
+From crs.franke at gmail.com  Sun Feb 21 18:15:42 2010
+From: crs.franke at gmail.com (Christian Franke)
+Date: Sun, 21 Feb 2010 18:15:42 +0100
+Subject: [fbsplash-devel] "blendin() blendout()" not working on boxes?
+Message-ID: <42FCD0E5-A124-4C25-BDC6-4A5B46F95441@gmail.com>
+
+hello all,
+
+atm i'm working on a few splash themes. basically everything is working fine but i'm not sure if the behavior of "blendin() blendout()" applied on boxes is the way it is meant to be. i'd expect blend*() to fade in or out a certain object. like described in the manual the blend*() special effects can be used on "box, text, icon, anim" directives.
+
+---
+
+1. mng loader image:
+"anim loop icons/loader.mng 624 464 blendin(400) blendout(400)"
+
+as expected  "blendin() blendout()" lets the mng fade in and out in 400ms.
+
+---
+
+2. drawing a box:
+"# bottom left bar
+box silent noover      20 620 630 627 #000000 #333333 #000000 #333333  blendin(400) blendout(400)
+box silent noover      20 621 630 626 #000000 #999999 #000000 #999999  blendin(400) blendout(400)
+box silent noover      20 623 630 624 #000000 #c6c6c6 #000000 #c6c6c6  blendin(400) blendout(400)"
+
+in this case the box won't blend in or out. it just appears with a delay of 400ms.
+
+---
+
+is there anything wrong with the syntax i'm using or could anything else suppress the blend*() special effects?
+
+best regards,
+chris
+

@@ -1,0 +1,52 @@
+From bogus@does.not.exist.com  Wed Mar 14 13:36:54 2012
+From: bogus@does.not.exist.com ()
+Date: Wed, 14 Mar 2012 12:36:54 -0000
+Subject: No subject
+Message-ID: <mailman.0.1331728614.32615.fbsplash-devel@lists.berlios.de>
+
+KLIBC:
+1. Download klibc: wget
+ftp://ftp.berlios.de/pub/fbsplash/debian/klibc/pool/contrib/k/klibc/klibc_1.5.7.orig.tar.gz
+
+2. Extract this: tar zxvf klibc_1.5.7.orig.tar.gz
+3. In the klibc-1.5.7 directory create a symbolic link to your Linux headers
+directory: ln -s /usr/src/linux linux
+4. Compile the klibc: make; make install
+     If you get any errors then check linux source directory.
+     Else download the Kernel source(
+http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.24.tar.bz2 )
+          a) Extract the kernel: tar jxvf linux-2.6.24.tar.bz2
+          b) In linux-2.6.24 build the API headers:
+             make mrproper
+             make headers_check
+             make INSTALL_HDR_PATH=dest headers_install
+          c) In the klibc directory create a symbolic link to the
+linux-2.6.24/dest directory: ln -s ../linux-2.6.24/dest linux
+          d) Try and make again: make; make install
+5. You should now have klcc at /usr/bin/klcc and libs for klibc in /usr/lib/klibc
+6. Check that /usr/lib/klibc/include/asm has posix_types.h file, if it does not
+then copy all files from /usr/src/linux/include/asm into this directory: cp
+/usr/src/linux/include/asm/* /usr/lib/klibc/include/asm
+
+GPM:
+7. Use the LFS guide for GPM:
+http://www.linuxfromscratch.org/blfs/view/stable/general/sysutils.html
+
+SPLASHUTILS:
+8. Download the latest version of splashutils: wget
+http://download.berlios.de/fbsplash/splashutils-1.5.4.tar.bz2
+9. Extract this: tar jxvf splashutils-1.5.4.tar.bz2
+10. In the splashutils-1.5.4 directory run configure: ./configure
+11. Compile splashutils: make; make install
+
+I hope this helps
+
+Jason
+ 
+ 
+
+
+
+
+
+

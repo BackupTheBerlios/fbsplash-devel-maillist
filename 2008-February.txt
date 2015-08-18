@@ -1,0 +1,184 @@
+From spock at gentoo.org  Mon Feb 18 17:47:05 2008
+From: spock at gentoo.org (Michal Januszewski)
+Date: Mon, 18 Feb 2008 17:47:05 +0100
+Subject: [fbsplash-devel] 1.5.4 release: early warning :)
+Message-ID: <20080218164705.GA4017@spock.one.pl>
+
+Hi everyone,
+
+This is an "early warning" about the upcoming 1.5.4 release of
+splashutils.  The release is planned for about a week from now,
+unless some new bugs are found or I suddenly become swamped with
+work.
+
+The new version of splashutils will include the following features that
+I think might require some slight updates of the distro-specific codes:
+
+- Support for a <textbox> section in the theme config files.  Whether
+  the textbox is visible by default is specified by the SPLASH_TEXTBOX
+  variable, with a default value of "no".  This should probably be
+  explicitly stated in whatever config file you're using for fbsplash.
+
+- There is a single static binary instead of fbsplashd.static,
+  splash_util.static and fbcondecor_ctl.static, which are now symlinks
+  to this binary (so everything should work out of the box -- if it
+  doesn't, please let me know).
+
+- Support for a fbsplash message log.  The log is supposed to contain
+  messages collected during boot.  Some generic support for it is
+  provided by splash_svc() in splash-functions.sh.  If you're not
+  using this, or wish to override it -- please update your scripts
+  to support message logging.
+
+Please also note that fbsplash supports the suspend/resume modes --
+you should probably make use of these in case you also provide
+scripts for interaction with any software suspend mechanisms.
+
+The release will probably also include an 'autoverbose-on-inactivity'
+patch by Michael Heide, which will add yet another configuration
+variable.
+
+As usual, the latest version of fbsplash is available at:
+http://repo.or.cz/w/fbsplash.git
+
+Best regards.
+-- 
+Michal Januszewski                              JID: spock at im.gentoo.org
+Gentoo Linux Developer                    http://people.gentoo.org/spock
+
+
+
+From spock at gentoo.org  Tue Feb 26 00:11:29 2008
+From: spock at gentoo.org (Michal Januszewski)
+Date: Tue, 26 Feb 2008 00:11:29 +0100
+Subject: [fbsplash-devel] splashutils-1.5.4 released
+Message-ID: <20080225231128.GA27325@spock.one.pl>
+
+Hi,
+
+splashutils-1.5.4 has just been released.  This release includes a bunch
+of new features, summarized below by an excerpt from the ChangeLog:
+
+ - Provide a single static binary that perfoms the functions of
+   fbsplashd, splash_util and, optionally, fbcondecor_ctl.
+ - Add support for the blendin() and blendout() special effect modifiers.
+ - Add support for the <textbox> section in config files.
+ - Add support for the fbsplash message log.
+ - Add support for the autoverbose feature.
+ - Add the splashy2fbsplash theme converter.
+
+Best regards.
+-- 
+Michal Januszewski                              JID: spock at im.gentoo.org
+Gentoo Linux Developer                    http://people.gentoo.org/spock
+
+
+
+From dipsd at yahoo.com  Tue Feb 26 17:20:14 2008
+From: dipsd at yahoo.com (dips)
+Date: Tue, 26 Feb 2008 08:20:14 -0800 (PST)
+Subject: [fbsplash-devel] Compiling splashutils-1.5.4 on Fedora Core 6
+Message-ID: <512924.64397.qm@web36611.mail.mud.yahoo.com>
+
+Hello,
+
+I am trying to compile splashutils on Fedora core 6. Downloaded the full tarball ran configure on it.
+
+Successful so far. Ran make on it and thats when the problems started. It complained about libjpeg.a not being present.
+
+Went into the libs dir and configured and compiled all of the libraries since each of those was giving an error.
+
+Once the libs were all compiled, i went into the root dir for the sources and ran make again. This is what it turns up
+
+make --silent all-recursive
+Making all in libs
+Making all in src
+Making all in .
+  CC      fbcondecor_helper-kernel.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-libfbsplash.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-libfbsplashrender.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-fbcon_decor.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-common.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-parse.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-list.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-render.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-image.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-effects.o
+make[4]: DWITH_ERRLIST: Command not found
+  CC      fbcondecor_helper-ttf.o
+make[4]: DWITH_ERRLIST: Command not found
+  LD      fbcondecor_helper
+make[4]: Os: Command not found
+strip: 'fbcondecor_helper': No such file
+make[4]: *** [fbcondecor_helper] Error 1
+make[3]: *** [all-recursive] Error 1
+make[2]: *** [all] Error 2
+make[1]: *** [all-recursive] Error 1
+make: *** [all] Error 2
+
+The same error turns up with splashutils-1.5.3. Any ideas on how to get it working on FC6? Help is much appreciated.
+
+Thanks
+
+--Dips
+
+
+
+
+      ____________________________________________________________________________________
+Be a better friend, newshound, and 
+know-it-all with Yahoo! Mobile.  Try it now.  http://mobile.yahoo.com/;_ylt=Ahu06i62sR8HDtDypao8Wcj9tAcJ 
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/fbsplash-devel/attachments/20080226/3809aff2/attachment.html>
+
+From spock at gentoo.org  Tue Feb 26 18:47:11 2008
+From: spock at gentoo.org (Michal Januszewski)
+Date: Tue, 26 Feb 2008 18:47:11 +0100
+Subject: [fbsplash-devel] Compiling splashutils-1.5.4 on Fedora Core 6
+In-Reply-To: <512924.64397.qm@web36611.mail.mud.yahoo.com>
+References: <512924.64397.qm@web36611.mail.mud.yahoo.com>
+Message-ID: <20080226174711.GB31062@spock.one.pl>
+
+On Tue, Feb 26, 2008 at 08:20:14AM -0800, dips wrote:
+
+Hi,
+
+> I am trying to compile splashutils on Fedora core 6. Downloaded the full tarball ran configure on it.
+> 
+> Successful so far. Ran make on it and thats when the problems started. It complained about libjpeg.a not being present.
+> 
+> Went into the libs dir and configured and compiled all of the libraries since each of those was giving an error.
+
+You shouldn't do that.  These libs are meant to be compiled with klcc
+and linked statically into the fbcondecor kernel helper.  Do you have the
+static versions of libjpeg, libpng and other relevant libraries
+installed on your system (check for /usr/lib/libjpeg.a, etc)?  If 
+you don't, they will probably be provided by -static or -devel packages.
+ 
+> The same error turns up with splashutils-1.5.3. Any ideas on how to get it working on FC6? Help is much appreciated.
+
+Please make sure you have the static libraries installed on your system.
+Then start with a fresh splashutils source tree.  If you run into any
+problems, run `make QUIET=false` and post the exact error message to
+this list.
+
+At any rate, do not manually configure and build the libraries from
+splashutils/libs :)
+
+Best regards.
+-- 
+Michal Januszewski                              JID: spock at im.gentoo.org
+Gentoo Linux Developer                    http://people.gentoo.org/spock
+
+
+

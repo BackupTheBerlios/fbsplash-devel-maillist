@@ -1,0 +1,72 @@
+From aleman.ivan at gmail.com  Wed Sep 21 19:05:33 2011
+From: aleman.ivan at gmail.com (Ivan Aleman)
+Date: Wed, 21 Sep 2011 12:05:33 -0500
+Subject: [fbsplash-devel] man pages
+Message-ID: <CAEk04Payqek14RPvnoq4WFe1br2SGQzc+kBAnHD51mr_Wc-Yjw@mail.gmail.com>
+
+Hello,
+
+I am new to the list, my name is Iv?n, and I would like to contribute to
+fbsplash by doing the man pages of the programs involved in the project.
+
+Does anyone has started this job? If so, have you manage to finish it, can I
+help?
+
+I am proficient in English and Spanish languages.
+
+Thank you and kudos to you all! :)
+
+-- 
+Iv?n
+@alemani
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/fbsplash-devel/attachments/20110921/995004b1/attachment.html>
+
+From michalj at gmail.com  Wed Sep 21 19:11:03 2011
+From: michalj at gmail.com (Michal Januszewski)
+Date: Wed, 21 Sep 2011 19:11:03 +0200
+Subject: [fbsplash-devel] man pages
+In-Reply-To: <CAEk04Payqek14RPvnoq4WFe1br2SGQzc+kBAnHD51mr_Wc-Yjw@mail.gmail.com>
+References: <CAEk04Payqek14RPvnoq4WFe1br2SGQzc+kBAnHD51mr_Wc-Yjw@mail.gmail.com>
+Message-ID: <CAMU5vjjKD-DRiDJstGyVOx3ibDwtCGKTfcNLjWbB9n77DT6PMQ@mail.gmail.com>
+
+Hi,
+
+As far as I know nobody has done manpages for fbsplash.
+
+Thanks,
+Michal
+
+On Wed, Sep 21, 2011 at 19:05, Ivan Aleman <aleman.ivan at gmail.com> wrote:
+> Hello,
+>
+> I am new to the list, my name is Iv?n, and I would like to contribute to
+> fbsplash by doing the man pages of the programs involved in the project.
+>
+> Does anyone has started this job? If so, have you manage to finish it, can I
+> help?
+>
+> I am proficient in English and Spanish languages.
+>
+> Thank you and kudos to you all! :)
+>
+> --
+> Iv?n
+> @alemani
+>
+>
+> _______________________________________________
+> fbsplash-devel mailing list
+> fbsplash-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/fbsplash-devel
+>
+>
+
+
+
+-- 
+Michal Januszewski
+http://people.gentoo.org/spock
+
+

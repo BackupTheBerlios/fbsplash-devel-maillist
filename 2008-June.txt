@@ -1,0 +1,23 @@
+From joaobertacchi at gmail.com  Thu Jun 19 16:46:07 2008
+From: joaobertacchi at gmail.com (=?ISO-8859-1?Q?Jo=E3o_Eduardo_Ferreira_Bertacchi?=)
+Date: Thu, 19 Jun 2008 14:46:07 -0000
+Subject: [fbsplash-devel] Translations
+Message-ID: <38ee4d3b0806190746w22328642q251d86c7cc37604a@mail.gmail.com>
+
+Hello,
+
+I'd like to know if there is translations to splashutils-gentoo.
+I couldn't find it so a did one to brazilian portuguese for
+splashutils-gentoo-1.0.11.
+
+-- 
+Jo?o E. F. Bertacchi
+www.repsubmarino.com
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: initrd.splash_pt_BR
+Type: application/octet-stream
+Size: 2095 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/fbsplash-devel/attachments/20080619/12cfe8b7/attachment.obj>
+

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fbsplash-devel] &quot;blendin() blendout()&quot; not working on boxes?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fbsplash-devel/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20%22blendin%28%29%20blendout%28%29%22%20not%20working%20on%20boxes%3F&In-Reply-To=%3C42FCD0E5-A124-4C25-BDC6-4A5B46F95441%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fbsplash-devel] &quot;blendin() blendout()&quot; not working on boxes?</H1>
+    <B>Christian Franke</B> 
+    <A HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20%22blendin%28%29%20blendout%28%29%22%20not%20working%20on%20boxes%3F&In-Reply-To=%3C42FCD0E5-A124-4C25-BDC6-4A5B46F95441%40gmail.com%3E"
+       TITLE="[fbsplash-devel] &quot;blendin() blendout()&quot; not working on boxes?">crs.franke at gmail.com
+       </A><BR>
+    <I>Sun Feb 21 18:15:42 CET 2010</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#20">[ date ]</a>
+              <a href="thread.html#20">[ thread ]</a>
+              <a href="subject.html#20">[ subject ]</a>
+              <a href="author.html#20">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hello all,
+
+atm i'm working on a few splash themes. basically everything is working fine but i'm not sure if the behavior of &quot;blendin() blendout()&quot; applied on boxes is the way it is meant to be. i'd expect blend*() to fade in or out a certain object. like described in the manual the blend*() special effects can be used on &quot;box, text, icon, anim&quot; directives.
+
+---
+
+1. mng loader image:
+&quot;anim loop icons/loader.mng 624 464 blendin(400) blendout(400)&quot;
+
+as expected  &quot;blendin() blendout()&quot; lets the mng fade in and out in 400ms.
+
+---
+
+2. drawing a box:
+&quot;# bottom left bar
+box silent noover      20 620 630 627 #000000 #333333 #000000 #333333  blendin(400) blendout(400)
+box silent noover      20 621 630 626 #000000 #999999 #000000 #999999  blendin(400) blendout(400)
+box silent noover      20 623 630 624 #000000 #c6c6c6 #000000 #c6c6c6  blendin(400) blendout(400)&quot;
+
+in this case the box won't blend in or out. it just appears with a delay of 400ms.
+
+---
+
+is there anything wrong with the syntax i'm using or could anything else suppress the blend*() special effects?
+
+best regards,
+chris
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#20">[ date ]</a>
+              <a href="thread.html#20">[ thread ]</a>
+              <a href="subject.html#20">[ subject ]</a>
+              <a href="author.html#20">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">More information about the fbsplash-devel
+mailing list</a><br>
+</body></html>

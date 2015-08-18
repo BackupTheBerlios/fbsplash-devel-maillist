@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> No subject
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fbsplash-devel/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.0.1331728614.32615.fbsplash-devel%40lists.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>No subject</H1>
+    <B></B> 
+    <A HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.0.1331728614.32615.fbsplash-devel%40lists.berlios.de%3E"
+       TITLE="No subject">
+       </A><BR>
+    <I>Wed Mar 14 13:36:54 CET 2012</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>KLIBC:
+1. Download klibc: wget
+<A HREF="ftp://ftp.berlios.de/pub/fbsplash/debian/klibc/pool/contrib/k/klibc/klibc_1.5.7.orig.tar.gz">ftp://ftp.berlios.de/pub/fbsplash/debian/klibc/pool/contrib/k/klibc/klibc_1.5.7.orig.tar.gz</A>
+
+2. Extract this: tar zxvf klibc_1.5.7.orig.tar.gz
+3. In the klibc-1.5.7 directory create a symbolic link to your Linux headers
+directory: ln -s /usr/src/linux linux
+4. Compile the klibc: make; make install
+     If you get any errors then check linux source directory.
+     Else download the Kernel source(
+<A HREF="http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.24.tar.bz2">http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.24.tar.bz2</A> )
+          a) Extract the kernel: tar jxvf linux-2.6.24.tar.bz2
+          b) In linux-2.6.24 build the API headers:
+             make mrproper
+             make headers_check
+             make INSTALL_HDR_PATH=dest headers_install
+          c) In the klibc directory create a symbolic link to the
+linux-2.6.24/dest directory: ln -s ../linux-2.6.24/dest linux
+          d) Try and make again: make; make install
+5. You should now have klcc at /usr/bin/klcc and libs for klibc in /usr/lib/klibc
+6. Check that /usr/lib/klibc/include/asm has posix_types.h file, if it does not
+then copy all files from /usr/src/linux/include/asm into this directory: cp
+/usr/src/linux/include/asm/* /usr/lib/klibc/include/asm
+
+GPM:
+7. Use the LFS guide for GPM:
+<A HREF="http://www.linuxfromscratch.org/blfs/view/stable/general/sysutils.html">http://www.linuxfromscratch.org/blfs/view/stable/general/sysutils.html</A>
+
+SPLASHUTILS:
+8. Download the latest version of splashutils: wget
+<A HREF="http://download.berlios.de/fbsplash/splashutils-1.5.4.tar.bz2">http://download.berlios.de/fbsplash/splashutils-1.5.4.tar.bz2</A>
+9. Extract this: tar jxvf splashutils-1.5.4.tar.bz2
+10. In the splashutils-1.5.4 directory run configure: ./configure
+11. Compile splashutils: make; make install
+
+I hope this helps
+
+Jason
+ 
+ 
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">More information about the fbsplash-devel
+mailing list</a><br>
+</body></html>

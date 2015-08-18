@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fbsplash-devel] Compiling splashutils-1.5.4 on Fedora Core 6
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fbsplash-devel/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20Compiling%20splashutils-1.5.4%20on%20Fedora%20Core%206&In-Reply-To=%3C570912.28317.qm%40web36607.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000007.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fbsplash-devel] Compiling splashutils-1.5.4 on Fedora Core 6</H1>
+    <B>dips</B> 
+    <A HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20Compiling%20splashutils-1.5.4%20on%20Fedora%20Core%206&In-Reply-To=%3C570912.28317.qm%40web36607.mail.mud.yahoo.com%3E"
+       TITLE="[fbsplash-devel] Compiling splashutils-1.5.4 on Fedora Core 6">dipsd at yahoo.com
+       </A><BR>
+    <I>Sat Mar  1 04:47:20 CET 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000007.html">[fbsplash-devel] Problems with compiling
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+The libraries are all existing on my system. During the make process, idid have to go and edit a few makefiles in libs and src - for somereason it was not picking up gcc as the compiler - had to manually addthat in to prevent the &quot;-Os command not found&quot; that make was throwingup.
+
+Anyway, alls well that ends well....I was able to compile splashutils -now playing around with the idea of early boot. Verbose mode works asexpected but for some reason the progress bar does not show up insilent mode. Fixing that at the moment.
+
+Thanks for the help.
+
+Dips
+
+----- Original Message ----
+From: Michal Januszewski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">spock at gentoo.org</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">fbsplash-devel at lists.berlios.de</A>
+Cc: dips &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">dipsd at yahoo.com</A>&gt;
+Sent: Tuesday, February 26, 2008 11:17:11 PM
+Subject: Re: [fbsplash-devel] Compiling splashutils-1.5.4 on Fedora Core 6
+
+On Tue, Feb 26, 2008 at 08:20:14AM -0800, dips wrote:
+
+Hi,
+
+&gt;<i> I am trying to compile splashutils on Fedora core 6. Downloaded the full tarball ran configure on it.
+</I>&gt;<i> 
+</I>&gt;<i> Successful so far. Ran make on it and thats when the problems started. It complained about libjpeg.a not being present.
+</I>&gt;<i> 
+</I>&gt;<i> Went into the libs dir and configured and compiled all of the libraries since each of those was giving an error.
+</I>
+You shouldn't do that.  These libs are meant to be compiled with klcc
+and linked statically into the fbcondecor kernel helper.  Do you have the
+static versions of libjpeg, libpng and other relevant libraries
+installed on your system (check for /usr/lib/libjpeg.a, etc)?  If 
+you don't, they will probably be provided by -static or -devel packages.
+ 
+&gt;<i> The same error turns up with splashutils-1.5.3. Any ideas on how to get it working on FC6? Help is much appreciated.
+</I>
+Please make sure you have the static libraries installed on your system.
+Then start with a fresh splashutils source tree.  If you run into any
+problems, run `make QUIET=false` and post the exact error message to
+this list.
+
+At any rate, do not manually configure and build the libraries from
+splashutils/libs :)
+
+Best regards.
+-- 
+Michal Januszewski                              JID: <A HREF="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">spock at im.gentoo.org</A>
+Gentoo Linux Developer                    <A HREF="http://people.gentoo.org/spock">http://people.gentoo.org/spock</A>
+
+
+
+
+
+
+
+      ____________________________________________________________________________________
+Be a better friend, newshound, and 
+know-it-all with Yahoo! Mobile.  Try it now.  <A HREF="http://mobile.yahoo.com/;_ylt=Ahu06i62sR8HDtDypao8Wcj9tAcJ">http://mobile.yahoo.com/;_ylt=Ahu06i62sR8HDtDypao8Wcj9tAcJ</A> 
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fbsplash-devel/attachments/20080229/d05befb3/attachment.html">https://lists.berlios.de/pipermail/fbsplash-devel/attachments/20080229/d05befb3/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000007.html">[fbsplash-devel] Problems with compiling
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">More information about the fbsplash-devel
+mailing list</a><br>
+</body></html>

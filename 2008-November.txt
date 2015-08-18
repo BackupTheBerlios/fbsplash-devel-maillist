@@ -1,0 +1,195 @@
+From jlbiasini at googlemail.com  Thu Nov 13 15:57:03 2008
+From: jlbiasini at googlemail.com (Jean-Louis Biasini)
+Date: Thu, 13 Nov 2008 15:57:03 +0100
+Subject: [fbsplash-devel] Problem with fbsplash on debian...
+Message-ID: <1226588223.7628.12.camel@debian>
+
+Hello!
+
+I have a little problem with fbsplash on debian : since last update, at
+the end of the loading process it seems that gdm is called too early.
+The progress bar don't reach its end (stop by 98%) and the fade effect
+don't reach its either (just breaked off, not very nice).
+When I proceed to a theme test with :
+splash_manager -c demo -t debian_neon -m s --steps=100
+The test reach the end of the process.
+Everything else works perfectly.
+
+regards
+
+Jean-Louis
+
+
+
+From jeandamiendurand at free.fr  Thu Nov 13 16:46:27 2008
+From: jeandamiendurand at free.fr (jeandamiendurand at free.fr)
+Date: Thu, 13 Nov 2008 16:46:27 +0100 (CET)
+Subject: [fbsplash-devel] Problem with fbsplash on debian...
+In-Reply-To: <1226588223.7628.12.camel@debian>
+Message-ID: <684209617.107451226591187904.JavaMail.root@zimbra5-e1.priv.proxad.net>
+
+May I know what is the run-order of gdm v.s. splash(utils) on your system ?
+
+I guess that
+
+ls -l /etc/rc*/*gdm* /etc/rc*/*splash*
+
+can do it.
+
+Thanks, Cheers, Jean-Damien.
+
+----- Mail Original -----
+De: "Jean-Louis Biasini" <jlbiasini at googlemail.com>
+?: fbsplash-devel at lists.berlios.de
+
+./..
+I have a little problem with fbsplash on debian : since last update, at
+the end of the loading process it seems that gdm is called too early.
+The progress bar don't reach its end (stop by 98%) and the fade effect
+don't reach its either (just breaked off, not very nice).
+./..
+
+
+From spock at gentoo.org  Fri Nov 14 20:48:10 2008
+From: spock at gentoo.org (Michal Januszewski)
+Date: Fri, 14 Nov 2008 20:48:10 +0100
+Subject: [fbsplash-devel] splashutils-1.5.4.3 released
+Message-ID: <5d9b736f0811141148paa9d4b9wb7cbf7694acb3402@mail.gmail.com>
+
+Hi everyone,
+
+Just a quick note to let you know that I released splashutils-1.5.4.3 yesterday.
+This release fixes some minor bugs, and __changes an existing interface__.
+
+The change is that the svc_started and svc_stopped events have been
+split into svc_started/svc_start_failed and svc_stopped/svc_stop_failed,
+respectively.  svc_started and svc_stopped also no longer take error codes
+as an argument.  This change was necessary to bring the OpenRC splash
+plugin and the splash-functions.sh code into sync.
+
+I decided to change the interface instead of fixing the OpenRC plugin to
+provide imaginary error codes, as I believe there is very little point in
+exposing the error code (which can easily vary across distros) in the
+splash interface.
+
+Some backwards compatibility fixup code is in place in splash-functions.sh,
+so hopefully this change will not break any existing themes.  Also, AFAIR
+none of the non-Gentoo splash scripts implement these events anyway,
+so any impact is likely to be limited to Gentoo systems, where I can take
+care of any problems myself.
+
+This might also be a good moment to actually implement these service-related
+events in the Debian and Arch scripts.  Please let me know if you are
+interested or if you need any help with that.
+
+Best regards,
+-- 
+Michal Januszewski, Gentoo Linux Developer
+http://people.gentoo.org/spock
+
+
+From JeanDamienDurand at free.fr  Fri Nov 14 21:10:15 2008
+From: JeanDamienDurand at free.fr (Jean-Damien Durand)
+Date: Fri, 14 Nov 2008 21:10:15 +0100
+Subject: [fbsplash-devel] splashutils-1.5.4.3 released
+In-Reply-To: <5d9b736f0811141148paa9d4b9wb7cbf7694acb3402@mail.gmail.com>
+References: <5d9b736f0811141148paa9d4b9wb7cbf7694acb3402@mail.gmail.com>
+Message-ID: <200811142110.16440.JeanDamienDurand@free.fr>
+
+Thank you for this announcement.
+
+Concerning debian scripts, the (in theory, see [*]) actions are those defined 
+in their generic splash API, and they can be only of the following types up 
+to now:
+
+splash_running()          # Detects whether a splash is running
+splash_stop()             # Tells the splash to quit
+splash_start()            # Tells the splash to start if not already running
+custom_splash_progress()  # Tells the splash the current boot/shutdown
+                          # progress
+splash_start_indefinite() # Tells the splash that a task which may take an
+                          # unknown amount of time has started (such as a
+                          # fsck).
+splash_stop_indefinite()  # Tells the splash that an indefinite task is done
+splash_user_input()       # Gets user input from a splash
+
+IMHO Gentoo distribution handles much more events - in particular the fact 
+that a /named/ event is finished is terribly missing.
+
+[*] To be more accurate we depend on what is really called, indeed we find 
+that only the following events are currently used by the top debian rc 
+script:
+
+splash_progress()
+splash_stop()
+
+Yes, that's all, unless I misunderstood /etc/init.d/rc.
+
+So unfortunately Debian splash support is, let'say, not at the Gentoo's level.
+
+Thanks,
+
+Regards, Jean-Damien.
+
+On Friday 14 November 2008 20:48:10 Michal Januszewski wrote:
+> This might also be a good moment to actually implement these
+> service-related events in the Debian and Arch scripts. ?Please let me know
+> if you are interested or if you need any help with that.
+
+
+
+
+From jlbiasini at googlemail.com  Sat Nov 15 13:17:26 2008
+From: jlbiasini at googlemail.com (Jean-Louis Biasini)
+Date: Sat, 15 Nov 2008 13:17:26 +0100
+Subject: [fbsplash-devel] Another little problem on debian lenny
+Message-ID: <1226751446.8011.6.camel@debian>
+
+Hello everyone !
+
+I have found another little disturbing thing on my debian install. On
+reboot, splash works ok until the very end of the process. Then falls to
+console with the warming : "rebooting system". I didn't find anything
+about this on internet...
+
+Thanks for your works.
+
+Jean-Louis Biasini
+
+PS: Is there anyone working on a translation ? I can offer my help for
+the french version...
+
+
+
+From michalj at gmail.com  Mon Nov 17 21:09:00 2008
+From: michalj at gmail.com (Michal Januszewski)
+Date: Mon, 17 Nov 2008 21:09:00 +0100
+Subject: [fbsplash-devel] splashutils-1.5.4.3 released
+In-Reply-To: <200811142110.16440.JeanDamienDurand@free.fr>
+References: <5d9b736f0811141148paa9d4b9wb7cbf7694acb3402@mail.gmail.com>
+	<200811142110.16440.JeanDamienDurand@free.fr>
+Message-ID: <5d9b736f0811171209j1c5d9ee7nb25399025e801686@mail.gmail.com>
+
+On Fri, Nov 14, 2008 at 21:10, Jean-Damien Durand
+<JeanDamienDurand at free.fr> wrote:
+
+Hi,
+
+> Concerning debian scripts, the (in theory, see [*]) actions are those defined
+> in their generic splash API, and they can be only of the following types up
+> to now:
+> [..]
+
+Thanks for explaining the Debian splash API to us.  Do you think it would
+be (technically) possible it to extend it to include those service-oriented
+events (svc_started, etc)?  By technically possible I mean:
+- without having to modify every single initscript,
+- regardless of whether a patch extending the interface would be accepted
+  upstream or not.
+
+Best regards,
+-- 
+Michal Januszewski, Gentoo Linux Developer
+http://people.gentoo.org/spock
+
+

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fbsplash-devel] fbsplash - Fedora 7
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fbsplash-devel/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20fbsplash%20-%20Fedora%207&In-Reply-To=%3C20071007165940.GB6020%40spock.one.pl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fbsplash-devel] fbsplash - Fedora 7</H1>
+    <B>Michal Januszewski</B> 
+    <A HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20fbsplash%20-%20Fedora%207&In-Reply-To=%3C20071007165940.GB6020%40spock.one.pl%3E"
+       TITLE="[fbsplash-devel] fbsplash - Fedora 7">spock at gentoo.org
+       </A><BR>
+    <I>Sun Oct  7 18:59:40 CEST 2007</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1">[ date ]</a>
+              <a href="thread.html#1">[ thread ]</a>
+              <a href="subject.html#1">[ subject ]</a>
+              <a href="author.html#1">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Oct 06, 2007 at 11:39:36AM -0700, Luke Scott wrote:
+
+Hi,
+
+&gt;<i> Assuming that the package I need is the splashutils package, I uncompressed 
+</I>&gt;<i> it and tried compiling. I got these errors:
+</I>&gt;<i>
+</I>&gt;<i> objs/.libs/libfbsplashrender.a(ttf.o): In function `Find_Glyph':
+</I>&gt;<i> ttf.c:(.text+0x238): undefined reference to `FT_Load_Glyph'
+</I>&gt;<i> ttf.c:(.text+0x367): undefined reference to `FT_Render_Glyph'
+</I>&gt;<i> ttf.c:(.text+0x597): undefined reference to `FT_Get_Char_Index'
+</I>&gt;<i> ttf.c:(.text+0x5af): undefined reference to `FT_Render_Glyph'
+</I>&gt;<i> ttf.c:(.text+0x60b): undefined reference to `FT_Outline_Transform'
+</I>&gt;<i> objs/.libs/libfbsplashrender.a(ttf.o): In function `TTF_CloseFont':
+</I>&gt;<i> ttf.c:(.text+0x1324): undefined reference to `FT_Done_Face'
+</I>&gt;<i> objs/.libs/libfbsplashrender.a(ttf.o): In function `load_fonts':
+</I>&gt;<i> ttf.c:(.text+0x142b): undefined reference to `FT_New_Face'
+</I>&gt;<i> ttf.c:(.text+0x14c5): undefined reference to `FT_New_Face'
+</I>&gt;<i> ttf.c:(.text+0x1546): undefined reference to `FT_Set_Char_Size'
+</I>&gt;<i> ttf.c:(.text+0x15c6): undefined reference to `FT_MulFix'
+</I>&gt;<i> ttf.c:(.text+0x15e4): undefined reference to `FT_MulFix'
+</I>&gt;<i> ttf.c:(.text+0x160e): undefined reference to `FT_MulFix'
+</I>&gt;<i> ttf.c:(.text+0x162d): undefined reference to `FT_MulFix'
+</I>&gt;<i> ttf.c:(.text+0x1649): undefined reference to `FT_MulFix'
+</I>&gt;<i> objs/.libs/libfbsplashrender.a(ttf.o): In function `TTF_Quit':
+</I>&gt;<i> ttf.c:(.text+0x16d8): undefined reference to `FT_Done_FreeType'
+</I>&gt;<i> objs/.libs/libfbsplashrender.a(ttf.o): In function `TTF_Init':
+</I>&gt;<i> ttf.c:(.text+0x16fe): undefined reference to `FT_Init_FreeType'
+</I>&gt;<i> collect2: ld returned 1 exit status
+</I>&gt;<i> make: *** [objs/splash_util.static] Error 1
+</I>
+Since this fails while building the static splash_util file, I guess
+this might be a problem with the static freetype libraries in your
+system.  Do you have a file called /usr/lib/libfreetype.a?
+
+If not, you'll need to add. Look for freetype-static, freetype-devel or
+something like that.
+
+&gt;<i> While doing the config I noticed animation support, which seems to be 
+</I>&gt;<i> turned off. What kind of things can you do with that?
+</I>
+You can display MNG animations on the screen.  It's quite similar to the
+icon support in fbsplash, except for the fact that the images are no
+longer static.  If you want to see a full list of available options,
+have a look at docs/theme_format and look for the 'anim' config
+directive.
+
+&gt;<i> As I said in my previous email fedora 7 uses initrd instead of initramfs. 
+</I>&gt;<i> Reading wikipedia's definition, I'm not quite sure. I think it says 
+</I>&gt;<i> initramfs uses a cpio archive and initrd is a virtual image... But I know 
+</I>&gt;<i> the initrd on fedora is a gziped newc cpio. I do know that the image does 
+</I>&gt;<i> not have sh, but rather uses nash.
+</I>
+This is good news actually.  An initramfs image (as is a gzipped cpio
+archive) can be used as an initrd, which apparently what Fedora does.
+
+Best regards.
+-- 
+Michal Januszewski                              JID: <A HREF="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">spock at im.gentoo.org</A>
+Gentoo Linux Developer                    <A HREF="http://people.gentoo.org/spock">http://people.gentoo.org/spock</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1">[ date ]</a>
+              <a href="thread.html#1">[ thread ]</a>
+              <a href="subject.html#1">[ subject ]</a>
+              <a href="author.html#1">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">More information about the fbsplash-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fbsplash-devel] [PATCH] fbsplashd: exit on failure to load an	image from a theme.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fbsplash-devel/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20%5BPATCH%5D%20fbsplashd%3A%20exit%20on%20failure%20to%20load%20an%0A%09image%20from%20a%20theme.&In-Reply-To=%3C13013233763688-git-send-email-msmith%40cbnco.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000022.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fbsplash-devel] [PATCH] fbsplashd: exit on failure to load an	image from a theme.</H1>
+    <B>Michael Smith</B> 
+    <A HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20%5BPATCH%5D%20fbsplashd%3A%20exit%20on%20failure%20to%20load%20an%0A%09image%20from%20a%20theme.&In-Reply-To=%3C13013233763688-git-send-email-msmith%40cbnco.com%3E"
+       TITLE="[fbsplash-devel] [PATCH] fbsplashd: exit on failure to load an	image from a theme.">msmith at cbnco.com
+       </A><BR>
+    <I>Mon Mar 28 16:42:55 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000022.html">[fbsplash-devel] [PATCH] fbsplashd: print the internal error code	on image load failure.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#21">[ date ]</a>
+              <a href="thread.html#21">[ thread ]</a>
+              <a href="subject.html#21">[ subject ]</a>
+              <a href="author.html#21">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Otherwise, it starts up and later segfaults. Subsequent writes to the
+control FIFO hang, causing startup script problems.
+
+Signed-off-by: Michael Smith &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">msmith at cbnco.com</A>&gt;
+---
+ core/src/libfbsplashrender.c |   15 +++++++++++----
+ 1 files changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/core/src/libfbsplashrender.c b/core/src/libfbsplashrender.c
+index bebce95..4d8b438 100644
+--- a/core/src/libfbsplashrender.c
++++ b/core/src/libfbsplashrender.c
+@@ -438,7 +438,7 @@ struct fbspl_theme *fbsplashr_theme_load()
+ 
+ 	fbsplash_get_res(config.theme, &amp;st-&gt;xres, &amp;st-&gt;yres);
+ 	if (st-&gt;xres == 0 || st-&gt;yres == 0)
+-		return NULL;
++		goto err;
+ 
+ 	snprintf(buf, 512, FBSPL_THEME_DIR &quot;/%s/%dx%d.cfg&quot;, config.theme, st-&gt;xres, st-&gt;yres);
+ 
+@@ -463,13 +463,15 @@ struct fbspl_theme *fbsplashr_theme_load()
+ 		cfg_check_sanity(st, 'v'))
+ 		st-&gt;modes &amp;= ~FBSPL_MODE_VERBOSE;
+ 	else
+-		load_images(st, 'v');
++		if (load_images(st, 'v') != 0)
++			goto err;
+ 
+ 	if ((config.reqmode &amp; FBSPL_MODE_SILENT) &amp;&amp;
+ 		cfg_check_sanity(st, 's'))
+ 		st-&gt;modes &amp;= ~FBSPL_MODE_SILENT;
+ 	else
+-		load_images(st, 's');
++		if (load_images(st, 's') != 0)
++			goto err;
+ 
+ #if WANT_MNG
+ 	load_anims(st);
+@@ -512,6 +514,10 @@ struct fbspl_theme *fbsplashr_theme_load()
+ 	}
+ 
+ 	return st;
++
++err:
++	fbsplashr_theme_free(st);
++	return NULL;
+ }
+ 
+ /**
+@@ -527,7 +533,8 @@ void fbsplashr_theme_free(struct fbspl_theme *theme)
+ 	if (!theme)
+ 		return;
+ 
+-	free(theme-&gt;bgbuf);
++	if (theme-&gt;bgbuf)
++		free(theme-&gt;bgbuf);
+ 
+ 	if (theme-&gt;pic)
+ 		free(theme-&gt;pic);
+-- 
+1.5.3.1.20.gb860
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000022.html">[fbsplash-devel] [PATCH] fbsplashd: print the internal error code	on image load failure.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#21">[ date ]</a>
+              <a href="thread.html#21">[ thread ]</a>
+              <a href="subject.html#21">[ subject ]</a>
+              <a href="author.html#21">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">More information about the fbsplash-devel
+mailing list</a><br>
+</body></html>

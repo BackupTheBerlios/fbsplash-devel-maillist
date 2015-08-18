@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fbsplash-devel] splashutils and autotools
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fbsplash-devel/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20splashutils%20and%20autotools&In-Reply-To=%3C20070926213329.GA5164%40spock.one.pl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fbsplash-devel] splashutils and autotools</H1>
+    <B>Michal Januszewski</B> 
+    <A HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%20splashutils%20and%20autotools&In-Reply-To=%3C20070926213329.GA5164%40spock.one.pl%3E"
+       TITLE="[fbsplash-devel] splashutils and autotools">spock at gentoo.org
+       </A><BR>
+    <I>Wed Sep 26 23:33:30 CEST 2007</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+As promised, I had a look at your patches.  In general, things look
+good and this is definitely the way to go :) There were a couple of
+problems but I think I've got them fixed now.
+
+The problems that I've hit:
+ 
+- when building from the objs directory, the source code compiled with
+  -DTARGET_KERNEL didn't use -I. and -I.., which caused it to fail
+  with a 'config.h: No such file or directory' message
+
+- the bundled libraries for the kernel helper have to be built (or at
+  least configured) before compiling the kernel helper code (the order
+  of dependencies was incorrect)
+
+- the include paths (-I ...) for the different libraries (freetype,
+  libpng, etc) have to be used when compiling all source files, no only
+  two from libfbsplashrender (this is perhaps something that I should
+  fix in the source code itself)
+
+- fbsplashd wasn't being linked with -lgpm
+
+I'll do some more tests soon and also see whether there's any way to
+reduce the number of configure options -- we seem to have an awfully
+huge amount of them now :)  If all goes well, the patches should be
+pushed into my git repo in a few days.
+
+Thanks once again for working on this.
+
+Best regards.
+-- 
+Michal Januszewski                              JID: <A HREF="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">spock at im.gentoo.org</A>
+Gentoo Linux Developer                    <A HREF="http://people.gentoo.org/spock">http://people.gentoo.org/spock</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">More information about the fbsplash-devel
+mailing list</a><br>
+</body></html>

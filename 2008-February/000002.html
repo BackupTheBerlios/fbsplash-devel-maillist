@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fbsplash-devel] 1.5.4 release: early warning :)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fbsplash-devel/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%201.5.4%20release%3A%20early%20warning%20%3A%29&In-Reply-To=%3C20080218164705.GA4017%40spock.one.pl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000003.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fbsplash-devel] 1.5.4 release: early warning :)</H1>
+    <B>Michal Januszewski</B> 
+    <A HREF="mailto:fbsplash-devel%40lists.berlios.de?Subject=Re%3A%20%5Bfbsplash-devel%5D%201.5.4%20release%3A%20early%20warning%20%3A%29&In-Reply-To=%3C20080218164705.GA4017%40spock.one.pl%3E"
+       TITLE="[fbsplash-devel] 1.5.4 release: early warning :)">spock at gentoo.org
+       </A><BR>
+    <I>Mon Feb 18 17:47:05 CET 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000003.html">[fbsplash-devel] splashutils-1.5.4 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi everyone,
+
+This is an &quot;early warning&quot; about the upcoming 1.5.4 release of
+splashutils.  The release is planned for about a week from now,
+unless some new bugs are found or I suddenly become swamped with
+work.
+
+The new version of splashutils will include the following features that
+I think might require some slight updates of the distro-specific codes:
+
+- Support for a &lt;textbox&gt; section in the theme config files.  Whether
+  the textbox is visible by default is specified by the SPLASH_TEXTBOX
+  variable, with a default value of &quot;no&quot;.  This should probably be
+  explicitly stated in whatever config file you're using for fbsplash.
+
+- There is a single static binary instead of fbsplashd.static,
+  splash_util.static and fbcondecor_ctl.static, which are now symlinks
+  to this binary (so everything should work out of the box -- if it
+  doesn't, please let me know).
+
+- Support for a fbsplash message log.  The log is supposed to contain
+  messages collected during boot.  Some generic support for it is
+  provided by splash_svc() in splash-functions.sh.  If you're not
+  using this, or wish to override it -- please update your scripts
+  to support message logging.
+
+Please also note that fbsplash supports the suspend/resume modes --
+you should probably make use of these in case you also provide
+scripts for interaction with any software suspend mechanisms.
+
+The release will probably also include an 'autoverbose-on-inactivity'
+patch by Michael Heide, which will add yet another configuration
+variable.
+
+As usual, the latest version of fbsplash is available at:
+<A HREF="http://repo.or.cz/w/fbsplash.git">http://repo.or.cz/w/fbsplash.git</A>
+
+Best regards.
+-- 
+Michal Januszewski                              JID: <A HREF="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">spock at im.gentoo.org</A>
+Gentoo Linux Developer                    <A HREF="http://people.gentoo.org/spock">http://people.gentoo.org/spock</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000003.html">[fbsplash-devel] splashutils-1.5.4 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fbsplash-devel">More information about the fbsplash-devel
+mailing list</a><br>
+</body></html>

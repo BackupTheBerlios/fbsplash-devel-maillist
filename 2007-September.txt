@@ -1,0 +1,45 @@
+From spock at gentoo.org  Wed Sep 26 23:33:30 2007
+From: spock at gentoo.org (Michal Januszewski)
+Date: Wed, 26 Sep 2007 23:33:30 +0200
+Subject: [fbsplash-devel] splashutils and autotools
+In-Reply-To: <46F6B124.6010003@san.rr.com>
+References: <46F6B124.6010003@san.rr.com>
+Message-ID: <20070926213329.GA5164@spock.one.pl>
+
+Hi,
+
+As promised, I had a look at your patches.  In general, things look
+good and this is definitely the way to go :) There were a couple of
+problems but I think I've got them fixed now.
+
+The problems that I've hit:
+ 
+- when building from the objs directory, the source code compiled with
+  -DTARGET_KERNEL didn't use -I. and -I.., which caused it to fail
+  with a 'config.h: No such file or directory' message
+
+- the bundled libraries for the kernel helper have to be built (or at
+  least configured) before compiling the kernel helper code (the order
+  of dependencies was incorrect)
+
+- the include paths (-I ...) for the different libraries (freetype,
+  libpng, etc) have to be used when compiling all source files, no only
+  two from libfbsplashrender (this is perhaps something that I should
+  fix in the source code itself)
+
+- fbsplashd wasn't being linked with -lgpm
+
+I'll do some more tests soon and also see whether there's any way to
+reduce the number of configure options -- we seem to have an awfully
+huge amount of them now :)  If all goes well, the patches should be
+pushed into my git repo in a few days.
+
+Thanks once again for working on this.
+
+Best regards.
+-- 
+Michal Januszewski                              JID: spock at im.gentoo.org
+Gentoo Linux Developer                    http://people.gentoo.org/spock
+
+
+

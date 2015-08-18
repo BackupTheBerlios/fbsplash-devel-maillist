@@ -1,0 +1,75 @@
+From spock at gentoo.org  Sun Oct  7 18:59:40 2007
+From: spock at gentoo.org (Michal Januszewski)
+Date: Sun, 7 Oct 2007 18:59:40 +0200
+Subject: [fbsplash-devel] fbsplash - Fedora 7
+In-Reply-To: <A08182D9-6306-44C7-9897-885A811DFF4F@cywh.com>
+References: <08E4A994-D438-4C02-A907-C8BAB2E0CA87@cywh.com>
+	<5d9b736f0710030241x58a542ey34142e6355bce0f9@mail.gmail.com>
+	<49A90BF0-1493-43A8-8748-63AA3B9328A1@cywh.com>
+	<20071003224743.GA25153@spock.one.pl>
+	<A08182D9-6306-44C7-9897-885A811DFF4F@cywh.com>
+Message-ID: <20071007165940.GB6020@spock.one.pl>
+
+On Sat, Oct 06, 2007 at 11:39:36AM -0700, Luke Scott wrote:
+
+Hi,
+
+> Assuming that the package I need is the splashutils package, I uncompressed 
+> it and tried compiling. I got these errors:
+>
+> objs/.libs/libfbsplashrender.a(ttf.o): In function `Find_Glyph':
+> ttf.c:(.text+0x238): undefined reference to `FT_Load_Glyph'
+> ttf.c:(.text+0x367): undefined reference to `FT_Render_Glyph'
+> ttf.c:(.text+0x597): undefined reference to `FT_Get_Char_Index'
+> ttf.c:(.text+0x5af): undefined reference to `FT_Render_Glyph'
+> ttf.c:(.text+0x60b): undefined reference to `FT_Outline_Transform'
+> objs/.libs/libfbsplashrender.a(ttf.o): In function `TTF_CloseFont':
+> ttf.c:(.text+0x1324): undefined reference to `FT_Done_Face'
+> objs/.libs/libfbsplashrender.a(ttf.o): In function `load_fonts':
+> ttf.c:(.text+0x142b): undefined reference to `FT_New_Face'
+> ttf.c:(.text+0x14c5): undefined reference to `FT_New_Face'
+> ttf.c:(.text+0x1546): undefined reference to `FT_Set_Char_Size'
+> ttf.c:(.text+0x15c6): undefined reference to `FT_MulFix'
+> ttf.c:(.text+0x15e4): undefined reference to `FT_MulFix'
+> ttf.c:(.text+0x160e): undefined reference to `FT_MulFix'
+> ttf.c:(.text+0x162d): undefined reference to `FT_MulFix'
+> ttf.c:(.text+0x1649): undefined reference to `FT_MulFix'
+> objs/.libs/libfbsplashrender.a(ttf.o): In function `TTF_Quit':
+> ttf.c:(.text+0x16d8): undefined reference to `FT_Done_FreeType'
+> objs/.libs/libfbsplashrender.a(ttf.o): In function `TTF_Init':
+> ttf.c:(.text+0x16fe): undefined reference to `FT_Init_FreeType'
+> collect2: ld returned 1 exit status
+> make: *** [objs/splash_util.static] Error 1
+
+Since this fails while building the static splash_util file, I guess
+this might be a problem with the static freetype libraries in your
+system.  Do you have a file called /usr/lib/libfreetype.a?
+
+If not, you'll need to add. Look for freetype-static, freetype-devel or
+something like that.
+
+> While doing the config I noticed animation support, which seems to be 
+> turned off. What kind of things can you do with that?
+
+You can display MNG animations on the screen.  It's quite similar to the
+icon support in fbsplash, except for the fact that the images are no
+longer static.  If you want to see a full list of available options,
+have a look at docs/theme_format and look for the 'anim' config
+directive.
+
+> As I said in my previous email fedora 7 uses initrd instead of initramfs. 
+> Reading wikipedia's definition, I'm not quite sure. I think it says 
+> initramfs uses a cpio archive and initrd is a virtual image... But I know 
+> the initrd on fedora is a gziped newc cpio. I do know that the image does 
+> not have sh, but rather uses nash.
+
+This is good news actually.  An initramfs image (as is a gzipped cpio
+archive) can be used as an initrd, which apparently what Fedora does.
+
+Best regards.
+-- 
+Michal Januszewski                              JID: spock at im.gentoo.org
+Gentoo Linux Developer                    http://people.gentoo.org/spock
+
+
+
